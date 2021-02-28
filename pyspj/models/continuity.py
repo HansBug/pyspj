@@ -46,3 +46,7 @@ class ContinuitySPJResult(SPJResult):
                 ('message', lambda: truncate(repr(self.message), width=64, tail_length=16, show_length=True)),
             ]
         )
+
+    def _tuple(self):
+        _correctness, _message, _detail = SPJResult._tuple(self)
+        return _correctness, self.__score, _message, _detail

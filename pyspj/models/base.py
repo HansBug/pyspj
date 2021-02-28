@@ -59,3 +59,17 @@ class SPJResult(metaclass=ABCMeta):
                 ('message', lambda: truncate(repr(self.message), width=64, tail_length=16, show_length=True))
             ]
         )
+
+    def _tuple(self):
+        return self.__correctness, self.__message, self.__detail
+
+    def __eq__(self, other):
+        if other is self:
+            return True
+        elif isinstance(other, self.__class__):
+            return type(self) == type(other) and self._tuple() == other._tuple()
+        else:
+            return False
+
+    def __hash__(self):
+        return hash(self._tuple())

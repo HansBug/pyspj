@@ -28,6 +28,21 @@ class TestModelsContinuity:
         result = ContinuitySPJResult(True, 0.5, '123', '12345')
         assert repr(result) == "<ContinuitySPJResult correctness: True, score: 0.500, message: '123'>"
 
+    def test_eq(self):
+        result = ContinuitySPJResult(True, 0.5, '123', '12345')
+        assert result == result
+        assert result == ContinuitySPJResult(True, 0.5, '123', '12345')
+        assert result != 123
+
+    def test_hash(self):
+        _dict = {
+            ContinuitySPJResult(True, 0.5, '123', '12345'): 1,
+            ContinuitySPJResult(False, 0.5, '123', '12345'): 2,
+        }
+
+        assert _dict[ContinuitySPJResult(True, 0.5, '123', '12345')] == 1
+        assert _dict[ContinuitySPJResult(False, 0.5, '123', '12345')] == 2
+
 
 if __name__ == "__main__":
     pytest.main([os.path.abspath(__file__)])
