@@ -1,7 +1,7 @@
 import click
 from click.core import Context, Option
 
-from ..config.meta import __TITLE__, __VERSION__, __AUTHOR__, __AUTHOR_EMAIL__
+from ...config.meta import __TITLE__, __VERSION__, __AUTHOR__, __AUTHOR_EMAIL__
 
 
 # noinspection PyUnusedLocal
