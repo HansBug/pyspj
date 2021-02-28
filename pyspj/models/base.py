@@ -11,9 +11,7 @@ _DEFAULT_FAILURE_MESSAGE = 'Sorry, test failed!'
 def _check_message(message: str) -> str:
     message = message.strip()
     _message_lines = split_to_lines(message)
-    if not _message_lines:
-        warnings.warn('Message contains 0 line, no message will be displayed.')
-    elif len(_message_lines) > 1:
+    if len(_message_lines) > 1:
         warnings.warn('Message contains {n} lines, '
                       'we strongly recommend you to simplify the '
                       'message into exactly 1 line to keep its briefness.'.format(n=repr(len(_message_lines))))
@@ -57,7 +55,7 @@ class SPJResult(metaclass=ABCMeta):
         return get_repr_info(
             cls=self.__class__,
             args=[
-                ('correctness', lambda: repr(self.__correctness)),
-                ('message', lambda: truncate(repr(self.__message), width=64, tail_length=16, show_length=True))
+                ('correctness', lambda: repr(self.correctness)),
+                ('message', lambda: truncate(repr(self.message), width=64, tail_length=16, show_length=True))
             ]
         )

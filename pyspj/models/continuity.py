@@ -41,8 +41,8 @@ class ContinuitySPJResult(SPJResult):
         return get_repr_info(
             cls=self.__class__,
             args=[
-                ('correctness', lambda: repr(self.__correctness)),
-                ('score', lambda: '%.3f' % self.__score),
-                ('message', lambda: truncate(repr(self.__message), width=64, tail_length=16, show_length=True)),
+                ('correctness', lambda: repr(self.correctness)),
+                ('score', lambda: '%.3f' % self.score),
+                ('message', lambda: truncate(repr(self.message), width=64, tail_length=16, show_length=True)),
             ]
         )
