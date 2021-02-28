@@ -17,6 +17,12 @@ def _check_score(score: float) -> float:
 class ContinuitySPJResult(SPJResult):
     def __init__(self, correctness: bool, score: float,
                  message: Optional[str] = None, detail: Optional[str] = None, **kwargs):
+        """
+        :param correctness: correctness of result
+        :param score: score of result
+        :param message: message of result
+        :param detail: detail of result
+        """
         SPJResult.__init__(self, correctness, message, detail, **kwargs)
         self.__score = _check_score(score)
 

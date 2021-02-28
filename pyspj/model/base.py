@@ -24,6 +24,11 @@ def _check_message(message: str) -> str:
 class SPJResult(metaclass=ABCMeta):
     def __init__(self, correctness: bool,
                  message: Optional[str] = None, detail: Optional[str] = None, **kwargs):
+        """
+        :param correctness: correctness of result
+        :param message: message of result
+        :param detail: detail of result
+        """
         self.__correctness = not not correctness
         self.__message = _check_message(
             message or (_DEFAULT_SUCCESS_MESSAGE if self.__correctness else _DEFAULT_FAILURE_MESSAGE))
