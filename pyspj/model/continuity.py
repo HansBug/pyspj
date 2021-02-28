@@ -15,8 +15,9 @@ def _check_score(score: float) -> float:
 
 
 class ContinuitySPJResult(SPJResult):
-    def __init__(self, correctness: bool, score: float, message: Optional[str] = None, detail: Optional[str] = None):
-        SPJResult.__init__(self, correctness, message, detail)
+    def __init__(self, correctness: bool, score: float,
+                 message: Optional[str] = None, detail: Optional[str] = None, **kwargs):
+        SPJResult.__init__(self, correctness, message, detail, **kwargs)
         self.__score = _check_score(score)
 
     @property
