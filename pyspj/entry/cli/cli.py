@@ -73,4 +73,4 @@ def cli(input_content, output_content,
     result_type = ResultType.loads(result_type)
     result = _execute_func(spj=spj, stdin=_input, stdout=_output, type_=result_type)
 
-    print(json.dumps(result.to_json(), indent=4 if pretty else None))
+    print(json.dumps(result.to_json(), indent=4 if pretty else None, sort_keys=True))
