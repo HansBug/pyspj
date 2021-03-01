@@ -1,3 +1,4 @@
+from enum import unique, IntEnum
 from typing import Tuple, Optional
 
 from .base import SPJResult
@@ -48,19 +49,85 @@ def _load_result_from_tuple(data: tuple) -> SPJResult:
     return _load_from_values(_correctness, _score, _message, _detail)
 
 
-def load_result(data) -> SPJResult:
+@unique
+class ResultType(IntEnum):
+    FREE = 0
+    SIMPLE = 1
+    CONTINUITY = 2
+
+    @classmethod
+    def loads(cls, value) -> 'ResultType':
+        """
+        Load result type from value
+        :param value: raw value
+        :return: result type object
+        """
+        if isinstance(value, cls):
+            return value
+        elif isinstance(value, str):
+            if value.upper() in cls.__members__.keys():
+                return cls.__members__[value.upper()]
+            else:
+                raise KeyError('Unknown result type - {actual}.'.format(actual=repr(value)))
+        elif isinstance(value, int):
+            _mapping = {v.value: v for k, v in cls.__members__.items()}
+            if value in _mapping.keys():
+                return _mapping[value]
+            else:
+                raise ValueError('Unknown result type value - {actual}'.format(actual=repr(value)))
+        else:
+            raise TypeError('Int, str or {cls} expected but {actual} found.'.format(
+                cls=cls.__name__,
+                actual=repr(type(value).__name__)
+            ))
+
+
+def load_result(data, type_=None) -> SPJResult:
     """
     load result from all kinds of data
     :param data: raw data
+    :param type_: result type
     :return: spj result
     """
-    if isinstance(data, SimpleSPJResult):
-        return data
-    elif isinstance(data, ContinuitySPJResult):
-        return data
-    elif isinstance(data, dict):
-        return _load_result_from_dict(data)
-    elif isinstance(data, (list, tuple)):
-        return _load_result_from_tuple(tuple(data))
+
+    def _func():
+        if isinstance(data, SimpleSPJResult):
+            return data
+        elif isinstance(data, ContinuitySPJResult):
+            return data
+        elif isinstance(data, dict):
+            return _load_result_from_dict(data)
+        elif isinstance(data, (list, tuple)):
+            return _load_result_from_tuple(tuple(data))
+        else:
+            return SimpleSPJResult(not not data)
+
+    _result = _func()
+    type_ = ResultType.loads(type_ or ResultType.FREE)
+    if type_ == ResultType.SIMPLE:
+        return to_simple(_result)
+    elif type_ == ResultType.CONTINUITY:
+        return to_continuity(_result)
     else:
-        return SimpleSPJResult(not not data)
+        return _result
+
+
+def to_simple(data) -> SimpleSPJResult:
+    """
+    to simple result
+    :param data: original data
+    :return: simple spj result
+    """
+    return SimpleSPJResult(**load_result(data).to_json())
+
+
+def to_continuity(data) -> ContinuitySPJResult:
+    """
+    to continuity result
+    :param data: original data
+    :return: continuity spj result
+    """
+    _dict = dict(load_result(data).to_json())
+    if 'score' not in _dict:
+        _dict['score'] = 0.0
+    return ContinuitySPJResult(**_dict)
