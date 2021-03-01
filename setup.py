@@ -50,7 +50,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pyspj=pyspj.cli.cli:cli'
+            'pyspj=pyspj.entry.cli:cli'
         ]
     },
 )
