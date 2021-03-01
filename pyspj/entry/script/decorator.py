@@ -10,7 +10,7 @@ def stdin_string_support(func):
             with io.StringIO(stdin) as stdin_stream:
                 return func(stdin=stdin_stream, **kwargs)
         else:
-            return func(stdin, **kwargs)
+            return func(stdin=stdin, **kwargs)
 
     return _func
 
@@ -22,7 +22,7 @@ def stdout_string_support(func):
             with io.StringIO(stdout) as stdout_stream:
                 return func(stdout=stdout_stream, **kwargs)
         else:
-            return func(stdout, **kwargs)
+            return func(stdout=stdout, **kwargs)
 
     return _func
 

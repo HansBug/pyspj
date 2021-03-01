@@ -22,19 +22,31 @@ class TestEntryScriptExecute:
         with io.StringIO('1 2 3  4  5') as stdin, io.StringIO('') as stdout:
             result = execute_spj(_spj_func, stdin, stdout)
             assert not result.correctness
-            assert result.message == 'Exception occurred while special judge - ' \
-                                     'ValueError("invalid literal for int() with base 10: \'\'",).'
+            assert result.message.startswith('Exception occurred while special judge - '
+                                             'ValueError("invalid literal for int() with base 10:')
             assert len(split_to_lines(result.detail)) >= 3
 
     def test_execute_spj_string(self):
+        with io.StringIO('1 2 3  4  5') as stdin, io.StringIO('  15 ') as stdout:
+            assert execute_spj_from_string(_spj_func, stdin, stdout) == SimpleSPJResult(True, 'Correct result.')
+        with io.StringIO('1 2 3  4  5') as stdin, io.StringIO('  16 ') as stdout:
+            assert execute_spj_from_string(_spj_func, stdin, stdout) == \
+                   SimpleSPJResult(False, 'Result 15 expected but 16 found.')
+        with io.StringIO('1 2 3  4  5') as stdin, io.StringIO('') as stdout:
+            result = execute_spj_from_string(_spj_func, stdin, stdout)
+            assert not result.correctness
+            assert result.message.startswith('Exception occurred while special judge - '
+                                             'ValueError("invalid literal for int() with base 10:')
+            assert len(split_to_lines(result.detail)) >= 3
+
         assert execute_spj_from_string(_spj_func, '1 2 3 4  5', '  15 ') == SimpleSPJResult(True, 'Correct result.')
         assert execute_spj_from_string(_spj_func, '1 2 3 4  5', '  16 ') == \
                SimpleSPJResult(False, 'Result 15 expected but 16 found.')
 
         result = execute_spj_from_string(_spj_func, '1 2 3 4  5', '')
         assert not result.correctness
-        assert result.message == 'Exception occurred while special judge - ' \
-                                 'ValueError("invalid literal for int() with base 10: \'\'",).'
+        assert result.message.startswith('Exception occurred while special judge - '
+                                         'ValueError("invalid literal for int() with base 10:')
 
     def test_execute_spj_file(self):
         with tempfile.NamedTemporaryFile() as stdin_file, \
@@ -60,8 +72,8 @@ class TestEntryScriptExecute:
 
             result = execute_spj_from_file(_spj_func, stdin_file.name, stdout_file.name)
             assert not result.correctness
-            assert result.message == 'Exception occurred while special judge - ' \
-                                     'ValueError("invalid literal for int() with base 10: \'\'",).'
+            assert result.message.startswith('Exception occurred while special judge - '
+                                             'ValueError("invalid literal for int() with base 10:')
 
 
 if __name__ == "__main__":
