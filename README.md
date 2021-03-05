@@ -138,7 +138,59 @@ pyspj -i '1 2 3 4 5' -o '15' -s test_spj -p
 }
 ```
 
+不仅如此，考虑到一些复杂的动态情况，pyspj可以支持动态载入数值。
 
+例如将脚本改为
+
+```python
+import io
+
+
+def spj_func(stdin: io.StringIO, stdout: io.StringIO, fxxk=None):
+    inputs = [int(item.strip()) for item in stdin.read().strip().split(' ') if item]
+    _correct_sum = sum(inputs)
+
+    if not fxxk:
+        outputs = stdout.read().strip().split(' ', maxsplit=2)
+        if len(outputs) >= 1:
+            _result = int(outputs[0])
+        else:
+            return False, 'No output found.'
+
+        if _result == _correct_sum:
+            return True, 'Correct result.', 'Oh yeah, well done ^_^.'
+        else:
+            return False, 'Result {correct} expected but {actual} found.'.format(
+                correct=repr(_correct_sum), actual=repr(_result)
+            )
+    else:
+        return False, 'Result error because {value} detected in fxxk.'.format(value=repr(fxxk))
+
+
+__spj__ = spj_func
+
+```
+
+添加了一个`fxxk`参数，则可以调用命令行
+
+```shell
+pyspj -i '1 2 3 4 5' -o '15' -s test_spj -p -V fxxk=2
+```
+
+输出为
+
+```
+{
+    "correctness": false,
+    "detail": "Result error because '2' detected in fxxk.",
+    "message": "Result error because '2' detected in fxxk."
+}
+```
+
+注意：
+
+* **附加参数建议保有默认值**，不然将在命令行中未配置时出现调用错误
+* 附加参数载入后**默认均为字符串格式**，如果需要转换请在脚本内手动转换
 
 ### 脚本使用
 
@@ -189,4 +241,26 @@ if __name__ == '__main__':
 ```
 
 输出结果同上，等价于混用命令。
+
+此外该部分也支持附加参数，例如对于上述脚本（指带有附加参数的），执行如下
+
+```python
+import codecs
+import io
+
+from pyspj import execute_spj
+
+if __name__ == '__main__':
+    with codecs.open('test_input.txt') as stdin, \
+            io.StringIO('15') as stdout:
+        result = execute_spj('test_spj', stdin, stdout, arguments={'fxxk': 2})
+    print(result.to_json())
+
+```
+
+输出结果为
+
+```
+{'correctness': False, 'message': 'Result error because 2 detected in fxxk.', 'detail': 'Result error because 2 detected in fxxk.'}
+```
 
