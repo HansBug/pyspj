@@ -42,7 +42,7 @@ CONTEXT_SETTINGS = dict(
 @click.option('-O', '--output_file', type=click.Path(exists=True, dir_okay=False, readable=True),
               help='Output file of special judge (if -o is given, this will be ignored).')
 @click.option('-V', '--value', type=str, multiple=True,
-              help='Attached values for special judge (do not named as "stdin" ot "stdout".')
+              help='Attached values for special judge (do not named as "stdin" or "stdout").')
 @click.option('-t', '--type', 'result_type',
               type=click.Choice([item.lower() for item in ResultType.__members__.keys()]),
               help='Type of the final result.', default=ResultType.FREE.name.lower(), show_default=True)
