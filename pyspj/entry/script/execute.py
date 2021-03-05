@@ -30,37 +30,40 @@ def _basic_process(spj):
     return _func
 
 
-def execute_spj(spj, stdin, stdout, type_=None) -> SPJResult:
+def execute_spj(spj, stdin, stdout, type_=None, arguments=None) -> SPJResult:
     """
     execute special judge
     :param spj: special judge function
     :param stdin: stdin stream
     :param stdout: stdout stream
     :param type_: load type
+    :param arguments: attached arguments
     :return: special judge result
     """
-    return load_result(_basic_process(spj)(stdin=stdin, stdout=stdout), type_)
+    return load_result(_basic_process(spj)(stdin=stdin, stdout=stdout, **(arguments or {})), type_)
 
 
-def execute_spj_from_string(spj, stdin, stdout, type_=None) -> SPJResult:
+def execute_spj_from_string(spj, stdin, stdout, type_=None, arguments=None) -> SPJResult:
     """
     execute special judge with string value
     :param spj: special judge function
     :param stdin: stdin string
     :param stdout: stdout string
     :param type_: load type
+    :param arguments: attached arguments
     :return: special judge result
     """
-    return execute_spj(string_support(_basic_process(spj)), stdin, stdout, type_)
+    return execute_spj(string_support(_basic_process(spj)), stdin, stdout, type_, arguments)
 
 
-def execute_spj_from_file(spj, stdin_file, stdout_file, type_=None) -> SPJResult:
+def execute_spj_from_file(spj, stdin_file, stdout_file, type_=None, arguments=None) -> SPJResult:
     """
     execute special judge with string file
     :param spj: special judge function
     :param stdin_file: stdin filename
     :param stdout_file: stdout filename
     :param type_: load type
+    :param arguments: attached arguments
     :return: special judge result
     """
-    return execute_spj(file_trans(_basic_process(spj)), stdin_file, stdout_file, type_)
+    return execute_spj(file_trans(_basic_process(spj)), stdin_file, stdout_file, type_, arguments)

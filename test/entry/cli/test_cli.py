@@ -87,6 +87,32 @@ class TestEntryCliCli:
         assert result.stdout.strip() == json.dumps({'correctness': True, 'detail': 'Correct result.',
                                                     'message': 'Correct result.'}, sort_keys=True, indent=4).strip()
 
+    def test_attached_values(self):
+        runner = CliRunner()
+        result = runner.invoke(cli, args=['-i', '1 2 3 4 5', '-o', '15',
+                                          '-s', 'test.entry.script.base:_spj_func',
+                                          '-V', 'fxxk=233'])
+
+        assert result.exit_code == 0
+        assert result.stdout.strip() == json.dumps({
+            "correctness": False,
+            "detail": "Result error because '233' detected in fxxk.",
+            "message": "Result error because '233' detected in fxxk."
+        }, sort_keys=True).strip()
+
+        runner = CliRunner()
+        result = runner.invoke(cli, args=['-i', '1 2 3 4 5', '-o', '15',
+                                          '-s', 'test.entry.script.base:_spj_func',
+                                          '-V', 'stdin=233', ])
+        assert result.exit_code == 1
+
+        runner = CliRunner()
+        result = runner.invoke(cli, args=['-i', '1 2 3 4 5', '-o', '15',
+                                          '-s', 'test.entry.script.base:_spj_func',
+                                          '-V', 'fxxk=233', '-V', 'tf=233'])
+        assert result.exit_code == 0
+        assert "unexpected keyword argument 'tf'" in result.stdout.strip()
+
 
 if __name__ == "__main__":
     pytest.main([os.path.abspath(__file__)])
