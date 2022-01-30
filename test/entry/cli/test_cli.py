@@ -1,6 +1,5 @@
 import codecs
 import json
-import os
 
 import pytest
 from click.testing import CliRunner
@@ -112,7 +111,3 @@ class TestEntryCliCli:
                                           '-V', 'fxxk=233', '-V', 'tf=233'])
         assert result.exit_code == 0
         assert "unexpected keyword argument 'tf'" in result.stdout.strip()
-
-
-if __name__ == "__main__":
-    pytest.main([os.path.abspath(__file__)])

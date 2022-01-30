@@ -1,5 +1,3 @@
-import os
-
 import pytest
 
 from pyspj.models import ContinuitySPJResult
@@ -42,7 +40,3 @@ class TestModelsContinuity:
 
         assert _dict[ContinuitySPJResult(True, 0.5, '123', '12345')] == 1
         assert _dict[ContinuitySPJResult(False, 0.5, '123', '12345')] == 2
-
-
-if __name__ == "__main__":
-    pytest.main([os.path.abspath(__file__)])

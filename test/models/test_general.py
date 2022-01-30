@@ -1,5 +1,3 @@
-import os
-
 import pytest
 
 from pyspj.models import load_result, SimpleSPJResult, ContinuitySPJResult, ResultType
@@ -84,7 +82,3 @@ class TestModelsGeneral:
 
         with pytest.raises(TypeError):
             ResultType.loads([])
-
-
-if __name__ == "__main__":
-    pytest.main([os.path.abspath(__file__)])

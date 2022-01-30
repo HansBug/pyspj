@@ -1,2 +1,2 @@
-click~=7.0
+click>=7.1.0
 colorama~=0.4

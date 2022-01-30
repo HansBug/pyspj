@@ -1,5 +1,3 @@
-import os
-
 import pytest
 
 from pyspj.utils import string_to_env, list_to_envs, env_to_string, envs_to_list
@@ -37,7 +35,3 @@ class TestUtilsEnvs:
             'OK': 'kjsdlf-2398',
             'THISX': '1=2',
         })) == {'1=2', 'THIS=', 'OK=kjsdlf-2398', 'THISX=1=2'}
-
-
-if __name__ == "__main__":
-    pytest.main([os.path.abspath(__file__)])

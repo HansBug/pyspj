@@ -1,5 +1,3 @@
-import os
-
 import pytest
 
 from pyspj.utils import truncate, split_to_lines
@@ -23,7 +21,3 @@ class TestUtilsString:
         assert split_to_lines('this is line 1   \r\n this is line 2 \n this is line 3\n this is line 4\r\n') == [
             'this is line 1   ', ' this is line 2 ', ' this is line 3', ' this is line 4'
         ]
-
-
-if __name__ == "__main__":
-    pytest.main([os.path.abspath(__file__)])

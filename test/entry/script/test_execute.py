@@ -1,5 +1,4 @@
 import io
-import os
 import pathlib
 import tempfile
 
@@ -74,7 +73,3 @@ class TestEntryScriptExecute:
             assert not result.correctness
             assert result.message.startswith('Exception occurred while special judge - '
                                              'ValueError("invalid literal for int() with base 10:')
-
-
-if __name__ == "__main__":
-    pytest.main([os.path.abspath(__file__)])

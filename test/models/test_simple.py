@@ -1,5 +1,3 @@
-import os
-
 import pytest
 
 from pyspj.models.simple import SimpleSPJResult
@@ -39,7 +37,3 @@ class TestModelsSimple:
 
         assert _dict[SimpleSPJResult(True, '123', '12345')] == 1
         assert _dict[SimpleSPJResult(None, '123', '12345')] == 2
-
-
-if __name__ == "__main__":
-    pytest.main([os.path.abspath(__file__)])

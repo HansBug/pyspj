@@ -1,5 +1,4 @@
 import io
-import os
 
 import pytest
 
@@ -45,7 +44,3 @@ class TestEntryScriptImports:
         with io.StringIO('1 2 3  4  5') as stdin, io.StringIO('  15 ') as stdout:
             with pytest.raises(ValueError):
                 execute_spj('', stdin, stdout)
-
-
-if __name__ == "__main__":
-    pytest.main([os.path.abspath(__file__)])
