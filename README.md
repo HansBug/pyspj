@@ -1,30 +1,44 @@
 # pyspj 
 
+[![PyPI](https://img.shields.io/pypi/v/pyspj)](https://pypi.org/project/pyspj/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyspj)](https://pypi.org/project/pyspj/)
+![Loc](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/HansBug/20b3613a7b38335548c65f11f60e4a2d/raw/loc.json)
+![Comments](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/HansBug/20b3613a7b38335548c65f11f60e4a2d/raw/comments.json)
+
+[![Docs Deploy](https://github.com/HansBug/pyspj/workflows/Docs%20Deploy/badge.svg)](https://github.com/HansBug/pyspj/actions?query=workflow%3A%22Docs+Deploy%22)
+[![Code Test](https://github.com/HansBug/pyspj/workflows/Code%20Test/badge.svg)](https://github.com/HansBug/pyspj/actions?query=workflow%3A%22Code+Test%22)
+[![Badge Creation](https://github.com/HansBug/pyspj/workflows/Badge%20Creation/badge.svg)](https://github.com/HansBug/pyspj/actions?query=workflow%3A%22Badge+Creation%22)
+[![Package Release](https://github.com/HansBug/pyspj/workflows/Package%20Release/badge.svg)](https://github.com/HansBug/pyspj/actions?query=workflow%3A%22Package+Release%22)
+[![codecov](https://codecov.io/gh/HansBug/pyspj/branch/main/graph/badge.svg?token=XJVDP4EFAT)](https://codecov.io/gh/HansBug/pyspj)
+
+[![GitHub stars](https://img.shields.io/github/stars/HansBug/pyspj)](https://github.com/HansBug/pyspj/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/HansBug/pyspj)](https://github.com/HansBug/pyspj/network)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/HansBug/pyspj)
+[![GitHub issues](https://img.shields.io/github/issues/HansBug/pyspj)](https://github.com/HansBug/pyspj/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/HansBug/pyspj)](https://github.com/HansBug/pyspj/pulls)
+[![Contributors](https://img.shields.io/github/contributors/HansBug/pyspj)](https://github.com/HansBug/pyspj/graphs/contributors)
+[![GitHub license](https://img.shields.io/github/license/HansBug/pyspj)](https://github.com/HansBug/pyspj/blob/master/LICENSE)
+
+
 A light-weighted special support utils.
 
-一个基于tmodule改进的超轻量版spj支持工具链。
+## Installation
 
-## 安装
+You can simply install it with `pip` command line from the official PyPI site.
 
-源代码安装
-
-```shell
-git clone git@gitlab.buaaoo.top:oo_system/judge/pyspj.git
-cd pyspj
-pip install .
+```
+pip install pyspj
 ```
 
-卸载
+For more information about installation, you can refer to the [installation guide](https://hansbug.github.io/pyspj/main/tutorials/installation/index.html).
 
-```shell
-pip uninstall pyspj
-```
 
-## 开始使用
 
-### 命令行使用
+## Quick Start
 
-pyspj可以通过命令行进行spj判定，命令行帮助信息如下
+### Use with CLI
+
+You can use `pyspj` CLI to judge the running result, the help information is as follows
 
 ```
 Usage: pyspj [OPTIONS]
@@ -46,7 +60,7 @@ Options:
   -h, --help                      Show this message and exit.
 ```
 
-一个简单的使用示例，设有如下的spj脚本`test_spj.py`
+Here is a simple example, a spj file named`test_spj.py`
 
 ```python
 import io
@@ -74,61 +88,71 @@ __spj__ = spj_func
 
 ```
 
-我们可以执行如下命令行进行判定
+You can use CLI to judge the result
 
 ```shell
+# input: 1 2 3 4 5
+# output: 15
 pyspj -i '1 2 3 4 5' -o '15' -s test_spj:spj_func
 ```
 
-意为从`test_spj`包中导入`spj_func`进行使用，输出结果为
+It means import special judge function `spj_func` from package `test_spj`, the output result should be
 
 ```
 {"correctness": true, "detail": "Oh yeah, well done ^_^.", "message": "Correct result."}
 ```
 
-此外，由于该脚本中定义了`__spj__`变量，故可以采用简单的命令行
+Besides, a simpler command line can be used due to the definition of `__spj__` variable
 
 ```shell
 pyspj -i '1 2 3 4 5' -o '15' -s test_spj
 ```
 
-效果与上面等价。
+This command is equivalent to the above command.
 
-然而在实际情况中，可能会存在文件较大且多行等不适合直接在命令行中表述的情况，故我们支持从文件载入输入输出。
 
-例如设有文件`test_input.txt`
+
+### Input & Output from File
+
+When the scale of input or output is huge, you can load them from `-I` and `-E` option.
+
+Here is an exmaple, a input file named`test_input.txt`
 
 ```
 1 2 3 4 5
 ```
 
-以及文件`test_output.txt`
+Output file named`test_output.txt`
 
 ```
 15
 ```
 
-故可以执行命令
+You can use CLI to judge the result in the txt files
 
 ```shell
 pyspj -I test_input.txt -O test_output.txt -s test_spj
 ```
 
-输出结果为
+The output should be
 
 ```
 {"correctness": true, "detail": "Oh yeah, well done ^_^.", "message": "Correct result."}
 ```
 
-而且实际上，文件和命令方式可以混用，例如可以使用`-I`指定文件输入，并用`-o`指定命令输出，一样可以进行正常的检查。
+Actually, `-I` and `-o` can be used together, so are the `-i` and `-E` options. There will be nothing different.
 
-在命令行使用中，如果想要更加清晰的多行排版的话，可以使用`-p`选项，例如
+
+
+### Pretty Json Output
+
+If you need pretty print the result (especially when you are debugging), you can use `-p` option.
 
 ```shell
 pyspj -i '1 2 3 4 5' -o '15' -s test_spj -p
 ```
 
-输出结果为
+The output should be
 
 ```json
 {
@@ -138,9 +162,13 @@ pyspj -i '1 2 3 4 5' -o '15' -s test_spj -p
 }
 ```
 
-不仅如此，考虑到一些复杂的动态情况，pyspj可以支持动态载入数值。
 
-例如将脚本改为
+
+### Additional Arguments
+
+Sometimes, you can use additional arguments to support more complex cases.
+
+Such as the special judge function below
 
 ```python
 import io
@@ -171,13 +199,13 @@ __spj__ = spj_func
 
 ```
 
-添加了一个`fxxk`参数，则可以调用命令行
+An extra `fxxk` argument is used, so the following command line can be used to set the value of argument `fxxk` to `2` (string)
 
 ```shell
 pyspj -i '1 2 3 4 5' -o '15' -s test_spj -p -V fxxk=2
 ```
 
-输出为
+The output should be
 
 ```
 {
@@ -187,14 +215,14 @@ pyspj -i '1 2 3 4 5' -o '15' -s test_spj -p -V fxxk=2
 }
 ```
 
-注意：
+ATTENTION:
 
-* **附加参数建议保有默认值**，不然将在命令行中未配置时出现调用错误
-* 附加参数载入后**默认均为字符串格式**，如果需要转换请在脚本内手动转换
+* **Addtional argument should has a default value**, otherwise when the value is not provided by command line, it will raise error.
+* **The default type of addtional arguments are string**, you need to convert it to the type you actually need in your special judge function.
 
-### 脚本使用
+### Use Special Judge in Python
 
-pyspj还支持直接在脚本中进行原生调用，例如程序如下
+`pyspj` can be used in native Python by importing package
 
 ```python
 from pyspj import execute_spj_from_string
@@ -205,13 +233,13 @@ if __name__ == '__main__':
 
 ```
 
-输出结果为
+The output should be
 
 ```
 {'correctness': True, 'message': 'Correct result.', 'detail': 'Oh yeah, well done ^_^.'}
 ```
 
-也一样支持文件导入，程序如下
+File input or file output are supported as well, like the following code
 
 ```python
 from pyspj import execute_spj_from_file
@@ -222,27 +250,9 @@ if __name__ == '__main__':
 
 ```
 
-输出同上。
+The output should be the same as the abovementioned code.
 
-值得注意的是，脚本使用中，**上述两个函数均不支持文件和字符串的混用**。如果需要支持混用的话，请使用`execute_spj`函数进行DIY。举例如下
-
-```python
-import codecs
-import io
-
-from pyspj import execute_spj
-
-if __name__ == '__main__':
-    with codecs.open('test_input.txt') as stdin, \
-            io.StringIO('15') as stdout:
-        result = execute_spj('test_spj', stdin, stdout)
-    print(result.to_json())
-
-```
-
-输出结果同上，等价于混用命令。
-
-此外该部分也支持附加参数，例如对于上述脚本（指带有附加参数的），执行如下
+Addtional arguments are also supported like the CLI.
 
 ```python
 import codecs
@@ -258,9 +268,12 @@ if __name__ == '__main__':
 
 ```
 
-输出结果为
+The output should be
 
 ```
 {'correctness': False, 'message': 'Result error because 2 detected in fxxk.', 'detail': 'Result error because 2 detected in fxxk.'}
 ```
 
+## License
+
+`pji` released under the Apache 2.0 license.
