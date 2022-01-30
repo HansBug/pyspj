@@ -2,7 +2,7 @@ from typing import Mapping
 
 from ...utils import list_to_envs
 
-_FORBIDDEN_NAMES = ['stdin', 'stdout']
+_FORBIDDEN_NAMES = {'stdin', 'stdout'}
 
 
 def _check_values(values: Mapping[str, str]) -> Mapping[str, str]:
