@@ -2,7 +2,9 @@ import warnings
 from abc import ABCMeta
 from typing import Optional, Mapping
 
-from ..utils import split_to_lines, get_repr_info, truncate
+from hbutils.string import truncate
+
+from ..utils import get_repr_info
 
 _DEFAULT_SUCCESS_MESSAGE = 'Congratulations, test passed!'
 _DEFAULT_FAILURE_MESSAGE = 'Sorry, test failed!'
@@ -10,7 +12,7 @@ _DEFAULT_FAILURE_MESSAGE = 'Sorry, test failed!'
 
 def _check_message(message: str) -> str:
     message = message.strip()
-    _message_lines = split_to_lines(message)
+    _message_lines = message.splitlines()
     if len(_message_lines) > 1:
         warnings.warn('Message contains {n} lines, '
                       'we strongly recommend you to simplify the '

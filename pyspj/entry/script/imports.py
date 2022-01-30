@@ -1,22 +1,18 @@
-import importlib
 from functools import wraps
+
+from hbutils.reflection import import_object
 
 _DEFAULT_FUNC_NAME = '__spj__'
 
 
-def _load_func_from_package(package_name: str, func_name: str):
-    module = importlib.import_module(package_name)
-    return getattr(module, func_name)
-
-
 def _load_func_from_string(string: str):
-    splits = string.split(":", maxsplit=2)
+    splits = string.split(":", maxsplit=1)
     if len(splits) == 1:
         package_name, func_name = splits[0], _DEFAULT_FUNC_NAME
     else:
         package_name, func_name = splits
 
-    return _load_func_from_package(package_name, func_name)
+    return import_object(func_name, package_name)
 
 
 def _post_check_func(func):

@@ -40,7 +40,3 @@ class TestEntryScriptImports:
         with io.StringIO('1 2 3  4  5') as stdin, io.StringIO('  15 ') as stdout:
             with pytest.raises(TypeError):
                 execute_spj('test.entry.script.base:_another_value', stdin, stdout)
-
-        with io.StringIO('1 2 3  4  5') as stdin, io.StringIO('  15 ') as stdout:
-            with pytest.raises(ValueError):
-                execute_spj('', stdin, stdout)

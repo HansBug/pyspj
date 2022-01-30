@@ -6,7 +6,6 @@ import pytest
 
 from pyspj.entry.script import execute_spj, execute_spj_from_string, execute_spj_from_file
 from pyspj.models import SimpleSPJResult
-from pyspj.utils import split_to_lines
 from .base import _spj_func
 
 
@@ -23,7 +22,7 @@ class TestEntryScriptExecute:
             assert not result.correctness
             assert result.message.startswith('Exception occurred while special judge - '
                                              'ValueError("invalid literal for int() with base 10:')
-            assert len(split_to_lines(result.detail)) >= 3
+            assert len(result.detail.splitlines()) >= 3
 
     def test_execute_spj_string(self):
         with io.StringIO('1 2 3  4  5') as stdin, io.StringIO('  15 ') as stdout:
@@ -36,7 +35,7 @@ class TestEntryScriptExecute:
             assert not result.correctness
             assert result.message.startswith('Exception occurred while special judge - '
                                              'ValueError("invalid literal for int() with base 10:')
-            assert len(split_to_lines(result.detail)) >= 3
+            assert len(result.detail.splitlines()) >= 3
 
         assert execute_spj_from_string(_spj_func, '1 2 3 4  5', '  15 ') == SimpleSPJResult(True, 'Correct result.')
         assert execute_spj_from_string(_spj_func, '1 2 3 4  5', '  16 ') == \
