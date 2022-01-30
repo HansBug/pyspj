@@ -37,9 +37,9 @@ jobs:
           python -V
       - name: Set up system dependences on linux
         run: |
-          apt-get update
-          apt-get install -y tree cloc wget curl make graphviz rsync
-          apt-get install -y libxml2-dev libxslt-dev python-dev  # need by pypy3
+          sudo apt-get update
+          sudo apt-get install -y tree cloc wget curl make graphviz rsync
+          sudo apt-get install -y libxml2-dev libxslt-dev python-dev  # need by pypy3
           dot -V
       - name: Set up python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -63,7 +63,7 @@ jobs:
       - name: Generate
         env:
           ENV_PROD: 'true'
-          PLANTUML_HOST: http://plantuml:8080
+          PLANTUML_HOST: http://127.0.0.1:18080
         run: |
           git fetch --all --tags
           git branch -av
