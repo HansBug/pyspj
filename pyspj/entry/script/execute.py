@@ -8,7 +8,7 @@ from .imports import _load_func
 from ...models import load_result, SPJResult
 
 
-def _basic_process(spj):
+def _spj_preprocess(spj):
     """
     process spj to be safe
     :param spj: original function
@@ -40,7 +40,7 @@ def execute_spj(spj, stdin, stdout, type_=None, arguments=None) -> SPJResult:
     :param arguments: attached arguments
     :return: special judge result
     """
-    return load_result(_basic_process(spj)(stdin=stdin, stdout=stdout, **(arguments or {})), type_)
+    return load_result(_spj_preprocess(spj)(stdin=stdin, stdout=stdout, **(arguments or {})), type_)
 
 
 def execute_spj_from_string(spj, stdin, stdout, type_=None, arguments=None) -> SPJResult:
@@ -53,7 +53,7 @@ def execute_spj_from_string(spj, stdin, stdout, type_=None, arguments=None) -> S
     :param arguments: attached arguments
     :return: special judge result
     """
-    return execute_spj(string_support(_basic_process(spj)), stdin, stdout, type_, arguments)
+    return execute_spj(string_support(_spj_preprocess(spj)), stdin, stdout, type_, arguments)
 
 
 def execute_spj_from_file(spj, stdin_file, stdout_file, type_=None, arguments=None) -> SPJResult:
@@ -66,4 +66,4 @@ def execute_spj_from_file(spj, stdin_file, stdout_file, type_=None, arguments=No
     :param arguments: attached arguments
     :return: special judge result
     """
-    return execute_spj(file_trans(_basic_process(spj)), stdin_file, stdout_file, type_, arguments)
+    return execute_spj(file_trans(_spj_preprocess(spj)), stdin_file, stdout_file, type_, arguments)
