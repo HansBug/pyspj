@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyspj.utils.envs &mdash; pyspj 0.0.2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="pyspj.utils" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyspj
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/installation/index.html">Installation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">pyspj.config</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyspj.utils</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyspj.utils.envs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#string-to-env">string_to_env</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-to-envs">list_to_envs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#env-to-string">env_to_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#envs-to-list">envs_to_list</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyspj</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyspj.utils</a> &raquo;</li>
+        
+      <li>pyspj.utils.envs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_doc/utils/envs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+    
+    
+  <div class="section" id="module-pyspj.utils.envs">
+<span id="pyspj-utils-envs"></span><h1>pyspj.utils.envs<a class="headerlink" href="#module-pyspj.utils.envs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="string-to-env">
+<h2>string_to_env<a class="headerlink" href="#string-to-env" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="pyspj.utils.envs.string_to_env">
+<code class="sig-prename descclassname">pyspj.utils.envs.</code><code class="sig-name descname">string_to_env</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyspj/utils/envs.html#string_to_env"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.utils.envs.string_to_env" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>Overview:</dt><dd><p>Turn string <code class="docutils literal notranslate"><span class="pre">KEY=VALUE</span></code> to key-value tuple.</p>
+</dd>
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p>string (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>): Original key-value string.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>(key, value): key and value</p></li>
+</ul>
+</dd>
+<dt>Examples::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspj.utils</span> <span class="kn">import</span> <span class="n">string_to_env</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string_to_env</span><span class="p">(</span><span class="s1">&#39;THIS=1&#39;</span><span class="p">)</span>
+<span class="go">(&#39;THIS&#39;, &#39;1&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string_to_env</span><span class="p">(</span><span class="s1">&#39;THIS=1=2&#39;</span><span class="p">)</span>
+<span class="go">(&#39;THIS&#39;, &#39;1=2&#39;)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="list-to-envs">
+<h2>list_to_envs<a class="headerlink" href="#list-to-envs" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="pyspj.utils.envs.list_to_envs">
+<code class="sig-prename descclassname">pyspj.utils.envs.</code><code class="sig-name descname">list_to_envs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">strings</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Mapping<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><a class="reference internal" href="../../_modules/pyspj/utils/envs.html#list_to_envs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.utils.envs.list_to_envs" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>Overview:</dt><dd><p>Turn a list of strings to key-value dict.</p>
+</dd>
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p>strings (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[str]</span></code>): List of key-value strings.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>envs (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping[str,</span> <span class="pre">str]</span></code>): Separated key-value dict.</p></li>
+</ul>
+</dd>
+<dt>Examples::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspj.utils</span> <span class="kn">import</span> <span class="n">list_to_envs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list_to_envs</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="s1">&#39;1=2&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;THIS=&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;OK=kjsdlf-2398&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;THISX=1=2&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">])</span>
+<span class="go">{&#39;1&#39;: &#39;2&#39;, &#39;THIS&#39;: &#39;&#39;, &#39;OK&#39;: &#39;kjsdlf-2398&#39;, &#39;THISX&#39;: &#39;1=2&#39;}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="env-to-string">
+<h2>env_to_string<a class="headerlink" href="#env-to-string" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="pyspj.utils.envs.env_to_string">
+<code class="sig-prename descclassname">pyspj.utils.envs.</code><code class="sig-name descname">env_to_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../../_modules/pyspj/utils/envs.html#env_to_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.utils.envs.env_to_string" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>Overview:</dt><dd><p>Turn key and value to <code class="docutils literal notranslate"><span class="pre">KEY=VALUE</span></code> string.</p>
+</dd>
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p>name (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>): Name of key.</p></li>
+<li><p>value (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>): Value.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>string (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>): <code class="docutils literal notranslate"><span class="pre">KEY=VALUE</span></code> string.</p></li>
+</ul>
+</dd>
+<dt>Examples::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspj.utils</span> <span class="kn">import</span> <span class="n">env_to_string</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env_to_string</span><span class="p">(</span><span class="s1">&#39;THIS&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="go">&#39;THIS=&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env_to_string</span><span class="p">(</span><span class="s1">&#39;THIS&#39;</span><span class="p">,</span> <span class="s1">&#39;1=2&#39;</span><span class="p">)</span>
+<span class="go">&#39;THIS=1=2&#39;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="envs-to-list">
+<h2>envs_to_list<a class="headerlink" href="#envs-to-list" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="pyspj.utils.envs.envs_to_list">
+<code class="sig-prename descclassname">pyspj.utils.envs.</code><code class="sig-name descname">envs_to_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">envs</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>str<span class="p">]</span><a class="reference internal" href="../../_modules/pyspj/utils/envs.html#envs_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.utils.envs.envs_to_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>Overview:</dt><dd><p>Turn key-value dict to list of <code class="docutils literal notranslate"><span class="pre">KEY=VALUE</span></code> strings.</p>
+</dd>
+<dt>Arguments:</dt><dd><ul class="simple">
+<li><p>envs (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapping[str,</span> <span class="pre">str]</span></code>): Key-value dict.</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><ul class="simple">
+<li><p>lenvs (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[str]</span></code>): List of <code class="docutils literal notranslate"><span class="pre">KEY=VALUE</span></code> strings.</p></li>
+</ul>
+</dd>
+<dt>Examples::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspj.utils</span> <span class="kn">import</span> <span class="n">envs_to_list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">envs_to_list</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;THIS&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;OK&#39;</span><span class="p">:</span> <span class="s1">&#39;kjsdlf-2398&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;THISX&#39;</span><span class="p">:</span> <span class="s1">&#39;1=2&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="go">[&#39;1=2&#39;, &#39;THIS=&#39;, &#39;OK=kjsdlf-2398&#39;, &#39;THISX=1=2&#39;]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="pyspj.utils" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, HansBug
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: main
+    <span class="fa fa-caret-down"></span>
+  </span>
+        <div class="rst-other-versions">
+                <dl>
+                    <dt>Branches</dt>
+                        <dd><a href="envs.html">main</a></dd>
+                </dl>
+        </div>
+    </div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
