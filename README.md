@@ -359,4 +359,4 @@ A standalone executable file will be created.
 
 ## License
 
-`pji` released under the Apache 2.0 license.
+`pyspj` released under the Apache 2.0 license.

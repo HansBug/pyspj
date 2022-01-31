@@ -1,9 +1,9 @@
 """
 Overview:
-    Meta information for pji package.
+    Meta information for pyspj package.
 """
 
-#: Title of this project (should be `pji`).
+#: Title of this project (should be `pyspj`).
 __TITLE__ = "pyspj"
 
 #: Version of this project.
