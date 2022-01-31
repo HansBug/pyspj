@@ -4,14 +4,14 @@ from typing import Optional
 import click
 from click.core import Context, Option
 
-from .base import CONTEXT_SETTINGS, _DEFAULT_RESULT_TYPE, _RESULT_TYPES, run_test
+from .base import CONTEXT_SETTINGS, _DEFAULT_RESULT_TYPE, run_test
 from ...config.meta import __TITLE__, __VERSION__
+from ...models import ResultType
 
 
 def pyspj_entry(name: str, spj, result_type: str = _DEFAULT_RESULT_TYPE,
                 version: Optional[str] = None, author: Optional[str] = None, email: Optional[str] = None):
-    if result_type not in _RESULT_TYPES:
-        raise ValueError(f'Invalid result type - {repr(result_type)}.')
+    result_type = ResultType.loads(result_type)
 
     def print_version(ctx: Context, param: Option, value: bool) -> None:
         if not value or ctx.resilient_parsing:

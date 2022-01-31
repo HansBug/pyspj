@@ -274,6 +274,89 @@ The output should be
 {'correctness': False, 'message': 'Result error because 2 detected in fxxk.', 'detail': 'Result error because 2 detected in fxxk.'}
 ```
 
+
+
+### Make My Special Judge Runnable
+
+You can add entry for your special judge function by using `pyspj_entry` function and call it in `__main___`
+
+```python
+import io
+
+from pyspj import pyspj_entry
+
+
+def spj_func(stdin: io.StringIO, stdout: io.StringIO):
+    inputs = [int(item.strip()) for item in stdin.read().strip().split(' ') if item]
+    _correct_sum = sum(inputs)
+
+    outputs = stdout.read().strip().split(' ', maxsplit=2)
+    if len(outputs) >= 1:
+        _result = int(outputs[0])
+    else:
+        return False, 'No output found.'
+
+    if _result == _correct_sum:
+        return True, 'Correct result.', 'Oh yeah, well done ^_^.'
+    else:
+        return False, 'Result {correct} expected but {actual} found.'.format(
+            correct=repr(_correct_sum), actual=repr(_result)
+        )
+
+
+if __name__ == '__main__':
+    pyspj_entry('test_spj', spj_func, version='0.1.1')()
+
+```
+
+Save the code above to `test_spj.py`, and then you can run it like pyspj cli.
+
+```shell
+python test_spj.py -h
+```
+
+The output should be
+
+```
+Usage: test_spj.py [OPTIONS]
+
+  Test_spj - test a pair of given input and output.
+
+Options:
+  -v, --version           Show special judge's version information.
+  -i, --input TEXT        Input content of special judge.
+  -o, --output TEXT       Output content of special judge
+  -I, --input_file FILE   Input file of special judge (if -i is given, this
+                          will be ignored).
+  -O, --output_file FILE  Output file of special judge (if -o is given, this
+                          will be ignored).
+  -V, --value TEXT        Attached values for special judge (do not named as
+                          "stdin" or "stdout").
+  -p, --pretty            Use pretty mode to print json result.
+  -h, --help              Show this message and exit.
+```
+
+And test the input
+
+```shell
+python test_spj.py -i '1 2 3 4 5' -o 15
+```
+
+```text
+{"correctness": true, "detail": "Oh yeah, well done ^_^.", "message": "Correct result."}
+```
+
+
+
+Besides, if the target environment does not have python, you can build this script with [pyinstaller](https://github.com/pyinstaller/pyinstaller)
+
+```shell
+pip install pyspj[build]
+pyinstaller -D -F -n test_spj -c test_spj.py
+```
+
+A standalone executable file will be created.
+
 ## License
 
 `pji` released under the Apache 2.0 license.
