@@ -10,7 +10,7 @@ __TITLE__ = "pyspj"
 __VERSION__ = "0.0.2"
 
 #: Short description of the project, will be included in ``setup.py``.
-__DESCRIPTION__ = 'Python library which can do complex test in educational area.'
+__DESCRIPTION__ = 'Python library which can build special judge for running result judging.'
 
 #: Author of this project.
 __AUTHOR__ = "HansBug"

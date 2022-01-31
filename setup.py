@@ -42,7 +42,7 @@ setup(
     author=meta['__AUTHOR__'],
     author_email=meta['__AUTHOR_EMAIL__'],
     license='Apache License, Version 2.0',
-    keywords='Python library which can do complex test in educational area.',
+    keywords='Python library which can build special judge for running result judging.',
     url='https://github.com/hansbug/pyspj',
 
     # environment
