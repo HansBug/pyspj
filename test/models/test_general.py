@@ -77,7 +77,7 @@ class TestModelsGeneral:
         assert ResultType.loads(0) == ResultType.FREE
         assert ResultType.loads(1) == ResultType.SIMPLE
         assert ResultType.loads(2) == ResultType.CONTINUITY
-        with pytest.raises(ValueError):
+        with pytest.raises(KeyError):
             ResultType.loads(-100)
 
         with pytest.raises(TypeError):

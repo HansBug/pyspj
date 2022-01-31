@@ -1,6 +1,8 @@
 from enum import unique, IntEnum
 from typing import Tuple, Optional
 
+from hbutils.reflection import int_enum_loads
+
 from .base import SPJResult
 from .continuity import ContinuitySPJResult
 from .simple import SimpleSPJResult
@@ -36,7 +38,7 @@ def _load_result_from_tuple(data: tuple) -> SPJResult:
         raise ValueError(
             'Tuple result should has no less than 1 object but {actual} found.'.format(actual=repr(len(data))))
     elif len(data) == 1:
-        _core, _message, _detail = data[0], None, None
+        (_core,), _message, _detail = data, None, None
     elif len(data) == 2:
         (_core, _message), _detail = data, None
     elif len(data) == 3:
@@ -49,37 +51,12 @@ def _load_result_from_tuple(data: tuple) -> SPJResult:
     return _load_from_values(_correctness, _score, _message, _detail)
 
 
+@int_enum_loads(name_preprocess=str.upper)
 @unique
 class ResultType(IntEnum):
     FREE = 0
     SIMPLE = 1
     CONTINUITY = 2
-
-    @classmethod
-    def loads(cls, value) -> 'ResultType':
-        """
-        Load result type from value
-        :param value: raw value
-        :return: result type object
-        """
-        if isinstance(value, cls):
-            return value
-        elif isinstance(value, str):
-            if value.upper() in cls.__members__.keys():
-                return cls.__members__[value.upper()]
-            else:
-                raise KeyError('Unknown result type - {actual}.'.format(actual=repr(value)))
-        elif isinstance(value, int):
-            _mapping = {v.value: v for k, v in cls.__members__.items()}
-            if value in _mapping.keys():
-                return _mapping[value]
-            else:
-                raise ValueError('Unknown result type value - {actual}'.format(actual=repr(value)))
-        else:
-            raise TypeError('Int, str or {cls} expected but {actual} found.'.format(
-                cls=cls.__name__,
-                actual=repr(type(value).__name__)
-            ))
 
 
 def load_result(data, type_=None) -> SPJResult:
