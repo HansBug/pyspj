@@ -1,7 +1,7 @@
 from enum import unique, IntEnum
 from typing import Tuple, Optional
 
-from hbutils.reflection import int_enum_loads
+from hbutils.model import int_enum_loads
 
 from .base import SPJResult
 from .continuity import ContinuitySPJResult

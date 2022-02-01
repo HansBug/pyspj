@@ -1,9 +1,9 @@
 from typing import Optional, Mapping
 
+from hbutils.model import get_repr_info
 from hbutils.string import truncate
 
 from .base import SPJResult
-from ..utils import get_repr_info
 
 
 def _check_score(score: float) -> float:

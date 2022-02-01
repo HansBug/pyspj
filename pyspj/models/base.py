@@ -2,9 +2,8 @@ import warnings
 from abc import ABCMeta
 from typing import Optional, Mapping
 
+from hbutils.model import get_repr_info
 from hbutils.string import truncate
-
-from ..utils import get_repr_info
 
 _DEFAULT_SUCCESS_MESSAGE = 'Congratulations, test passed!'
 _DEFAULT_FAILURE_MESSAGE = 'Sorry, test failed!'
