@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyspj.utils &mdash; pyspj 0.1.0 documentation</title>
+  <title>pyspj.models &mdash; pyspj 0.1.0 documentation</title>
   
 
   
@@ -36,8 +36,8 @@
   <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pyspj.utils.envs" href="envs.html" />
-    <link rel="prev" title="pyspj.models.simple" href="../models/simple.html" /> 
+    <link rel="next" title="pyspj.models.base" href="base.html" />
+    <link rel="prev" title="pyspj.config.meta" href="../config/meta.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,11 +92,14 @@
 <p class="caption"><span class="caption-text">API Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../config/index.html">pyspj.config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../models/index.html">pyspj.models</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">pyspj.utils</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="envs.html">pyspj.utils.envs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pyspj.models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="base.html">pyspj.models.base</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuity.html">pyspj.models.continuity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general.html">pyspj.models.general</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple.html">pyspj.models.simple</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">pyspj.utils</a></li>
 </ul>
 
             
@@ -142,13 +145,13 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>pyspj.utils</li>
+      <li>pyspj.models</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/api_doc/utils/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/api_doc/models/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -163,15 +166,27 @@
             
     
     
-  <div class="section" id="pyspj-utils">
-<h1>pyspj.utils<a class="headerlink" href="#pyspj-utils" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pyspj-models">
+<h1>pyspj.models<a class="headerlink" href="#pyspj-models" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="envs.html">pyspj.utils.envs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="envs.html#string-to-env">string_to_env</a></li>
-<li class="toctree-l2"><a class="reference internal" href="envs.html#list-to-envs">list_to_envs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="envs.html#env-to-string">env_to_string</a></li>
-<li class="toctree-l2"><a class="reference internal" href="envs.html#envs-to-list">envs_to_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base.html">pyspj.models.base</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="base.html#spjresult">SPJResult</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="continuity.html">pyspj.models.continuity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="continuity.html#continuityspjresult">ContinuitySPJResult</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">pyspj.models.general</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="general.html#load-result">load_result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general.html#to-continuity">to_continuity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general.html#to-simple">to_simple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general.html#resulttype">ResultType</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simple.html">pyspj.models.simple</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simple.html#simplespjresult">SimpleSPJResult</a></li>
 </ul>
 </li>
 </ul>
@@ -187,10 +202,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="envs.html" class="btn btn-neutral float-right" title="pyspj.utils.envs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="base.html" class="btn btn-neutral float-right" title="pyspj.models.base" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../models/simple.html" class="btn btn-neutral float-left" title="pyspj.models.simple" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../config/meta.html" class="btn btn-neutral float-left" title="pyspj.config.meta" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

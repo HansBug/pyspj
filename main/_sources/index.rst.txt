@@ -24,6 +24,7 @@ imported and built.
     :caption: API Documentation
 
     api_doc/config/index
+    api_doc/models/index
     api_doc/utils/index
 
 .. toctree::
