@@ -1,3 +1,5 @@
+from typing import Optional, List
+
 import click
 from click.core import Context, Option
 
@@ -8,7 +10,8 @@ from ...config.meta import __TITLE__, __VERSION__, __AUTHOR__, __AUTHOR_EMAIL__
 # noinspection PyUnusedLocal
 def print_version(ctx: Context, param: Option, value: bool) -> None:
     """
-    Print version information of cli
+    Print version information of cli.
+
     :param ctx: click context
     :param param: current parameter's metadata
     :param value: value of current parameter
@@ -39,7 +42,19 @@ def print_version(ctx: Context, param: Option, value: bool) -> None:
               help='Special judge script to be used.')
 @click.option('-p', '--pretty', type=bool, is_flag=True,
               help='Use pretty mode to print json result.')
-def cli(input_content, output_content,
-        input_file, output_file, value, result_type,
-        spj, pretty):
+def cli(input_content: Optional[str], output_content: Optional[str],
+        input_file: Optional[str], output_file: Optional[str],
+        value: List[str], result_type: str, spj: str, pretty: bool):
+    """
+    Command line entry of pyspj CLI.
+
+    :param input_content: Input content, should be a string or ``None``.
+    :param output_content: Output content, should be a string or ``None``.
+    :param input_file: Input filename, should be a string or ``None``.
+    :param output_file: Output filename, should be a string or ``None``.
+    :param value: Additional arguments, like ``KEY=VALUE``.
+    :param result_type: Result type, should be a string.
+    :param spj: Special judge string.
+    :param pretty: Enable pretty print or not, default is on.
+    """
     return run_test(input_content, output_content, input_file, output_file, value, result_type, spj, pretty)

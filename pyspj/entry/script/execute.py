@@ -10,9 +10,10 @@ from ...models import load_result, SPJResult
 
 def _spj_preprocess(spj):
     """
-    process spj to be safe
-    :param spj: original function
-    :return: processed special judge
+    Process spj to be safe.
+
+    :param spj: Original special judge function.
+    :return: Processed special judge function.
     """
     spj = _load_func(spj)
 
@@ -32,38 +33,41 @@ def _spj_preprocess(spj):
 
 def execute_spj(spj, stdin, stdout, type_=None, arguments=None) -> SPJResult:
     """
-    execute special judge
-    :param spj: special judge function
-    :param stdin: stdin stream
-    :param stdout: stdout stream
-    :param type_: load type
-    :param arguments: attached arguments
-    :return: special judge result
+    Execute the special judge.
+
+    :param spj: Special judge function, can be a string or a spj-function.
+    :param stdin: Stdin stream, can be a string stream or a file stream.
+    :param stdout: Stdout stream, should be a string stream or a file stream.
+    :param type_: Load type, should be a result mode string or enum.
+    :param arguments: Attached arguments.
+    :return: Result of this special judge.
     """
     return load_result(_spj_preprocess(spj)(stdin=stdin, stdout=stdout, **(arguments or {})), type_)
 
 
 def execute_spj_from_string(spj, stdin, stdout, type_=None, arguments=None) -> SPJResult:
     """
-    execute special judge with string value
-    :param spj: special judge function
-    :param stdin: stdin string
-    :param stdout: stdout string
-    :param type_: load type
-    :param arguments: attached arguments
-    :return: special judge result
+    Execute special judge with string value.
+
+    :param spj: Special judge function, can be a string or a spj-function.
+    :param stdin: Stdin stream, can be a string stream.
+    :param stdout: Stdout stream, should be a string stream.
+    :param type_: Load type, should be a result mode string or enum.
+    :param arguments: Attached arguments.
+    :return: Result of this special judge.
     """
     return execute_spj(string_support(_spj_preprocess(spj)), stdin, stdout, type_, arguments)
 
 
 def execute_spj_from_file(spj, stdin_file, stdout_file, type_=None, arguments=None) -> SPJResult:
     """
-    execute special judge with string file
-    :param spj: special judge function
-    :param stdin_file: stdin filename
-    :param stdout_file: stdout filename
-    :param type_: load type
-    :param arguments: attached arguments
-    :return: special judge result
+    Execute special judge with string file.
+
+    :param spj: Special judge function, can be a string or a spj-function.
+    :param stdin_file: Stdin stream, can be a file stream.
+    :param stdout_file: Stdout stream, should be a file stream.
+    :param type_: Load type, should be a result mode string or enum.
+    :param arguments: Attached arguments.
+    :return: Result of this special judge.
     """
     return execute_spj(file_trans(_spj_preprocess(spj)), stdin_file, stdout_file, type_, arguments)

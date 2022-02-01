@@ -11,6 +11,17 @@ from ...models import ResultType
 
 def pyspj_entry(name: str, spj, result_type: str = _DEFAULT_RESULT_TYPE,
                 version: Optional[str] = None, author: Optional[str] = None, email: Optional[str] = None):
+    """
+    Create your pyspj CLI entry.
+
+    :param name: Name of the special judge.
+    :param spj: Special judge function or string.
+    :param result_type: Type of result, default is ``FREE``.
+    :param version: Version information, default is ``None``.
+    :param author: Author of this special judge, default is ``None``.
+    :param email: Author email of this special judge, default is ``None``.
+    :return: A click function, can be used directly to create a CLI program.
+    """
     result_type = ResultType.loads(result_type)
 
     def print_version(ctx: Context, param: Option, value: bool) -> None:
