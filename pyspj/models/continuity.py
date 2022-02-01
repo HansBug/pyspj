@@ -33,11 +33,10 @@ class ContinuitySPJResult(SPJResult):
         return self.__score
 
     def to_json(self) -> Mapping[str, str]:
-        _result = dict(SPJResult.to_json(self))
-        _result.update(**dict(
-            score=self.score,
-        ))
-        return _result
+        return {
+            **SPJResult.to_json(self),
+            'score': self.score,
+        }
 
     def __repr__(self):
         return get_repr_info(
