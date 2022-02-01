@@ -35,7 +35,7 @@ def stdin_file_trans(func):
     @wraps(func)
     def _func(stdin, **kwargs):
         with codecs.open(stdin, 'r') as stdin_file:
-            return stdin_string_support(func)(stdin=stdin_file.read(), **kwargs)
+            return func(stdin=stdin_file, **kwargs)
 
     return _func
 
@@ -44,7 +44,7 @@ def stdout_file_trans(func):
     @wraps(func)
     def _func(stdout, **kwargs):
         with codecs.open(stdout, 'r') as stdout_file:
-            return stdout_string_support(func)(stdout=stdout_file.read(), **kwargs)
+            return func(stdout=stdout_file, **kwargs)
 
     return _func
 
