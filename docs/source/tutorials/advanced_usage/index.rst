@@ -7,7 +7,7 @@ Continuity Special Judge
 Sometimes, we need to use special judge not only for predicating \
 the correctness of output result, but the quality of result as well. \
 So we can return a tuple of values which represent correctness and \
-score to do this. Like the following code which is named ``spj_continuity.spj``.
+score to do this. Like the following code which is named ``spj_continuity.py``.
 
 .. literalinclude:: spj_continuity.py
     :language: python
