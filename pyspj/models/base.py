@@ -21,9 +21,17 @@ def _check_message(message: str) -> str:
 
 
 class SPJResult(metaclass=ABCMeta):
+    """
+    Overview:
+        Result of special judge.
+        This is an abstract class.
+    """
+
     def __init__(self, correctness: bool,
                  message: Optional[str] = None, detail: Optional[str] = None, **kwargs):
         """
+        Constructor for :class:`pyspj.models.base.SPJResult`.
+
         :param correctness: correctness of result
         :param message: message of result
         :param detail: detail of result
@@ -35,17 +43,31 @@ class SPJResult(metaclass=ABCMeta):
 
     @property
     def correctness(self) -> bool:
+        """
+        Correctness of this result.
+        """
         return self.__correctness
 
     @property
     def message(self) -> str:
+        """
+        Message of this result.
+        """
         return self.__message
 
     @property
     def detail(self) -> str:
+        """
+        Detail information of this result.
+        """
         return self.__detail
 
     def to_json(self) -> Mapping[str, str]:
+        """
+        Get JSON-formatted result data.
+
+        :return: A json for the current result data.
+        """
         return dict(
             correctness=self.correctness,
             message=self.message,
@@ -53,6 +75,11 @@ class SPJResult(metaclass=ABCMeta):
         )
 
     def __repr__(self):
+        """
+        Get representation format of current result object.
+
+        :return: Representation string.
+        """
         return get_repr_info(
             cls=self.__class__,
             args=[

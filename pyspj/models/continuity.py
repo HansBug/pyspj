@@ -17,9 +17,16 @@ def _check_score(score: float) -> float:
 
 
 class ContinuitySPJResult(SPJResult):
+    """
+    Overview:
+        Result of continuity special judge.
+    """
+
     def __init__(self, correctness: bool, score: float,
                  message: Optional[str] = None, detail: Optional[str] = None, **kwargs):
         """
+        Constructor for :class:`pyspj.models.continuity.ContinuitySPJResult`.
+
         :param correctness: correctness of result
         :param score: score of result
         :param message: message of result
@@ -30,6 +37,9 @@ class ContinuitySPJResult(SPJResult):
 
     @property
     def score(self) -> float:
+        """
+        Score of this result.
+        """
         return self.__score
 
     def to_json(self) -> Mapping[str, str]:
