@@ -1,0 +1,1 @@
+pyinstaller -D -F -n demo_spj -c spj_runnable.py
