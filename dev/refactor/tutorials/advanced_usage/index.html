@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced Usage &mdash; pyspj 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pyspj.config" href="../../api_doc/config/index.html" />
+    <link rel="prev" title="Quick Start" href="../quick_start/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyspj
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/index.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#continuity-special-judge">Continuity Special Judge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#addtional-arguments">Addtional Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-my-runnable-special-judge-cli">Create My Runnable Special Judge CLI</a></li>
+</ul>
+</li>
+</ul>
+<p><span class="caption-text">API Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api_doc/config/index.html">pyspj.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_doc/entry/index.html">pyspj.entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_doc/models/index.html">pyspj.models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_doc/utils/index.html">pyspj.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyspj</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Advanced Usage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/tutorials/advanced_usage/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+    
+    
+  <section id="advanced-usage">
+<h1>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h1>
+<section id="continuity-special-judge">
+<h2>Continuity Special Judge<a class="headerlink" href="#continuity-special-judge" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes, we need to use special judge not only for predicating the correctness of output result, but the quality of result as well. So we can return a tuple of values which represent correctness and score to do this. Like the following code which is named <code class="docutils literal notranslate"><span class="pre">spj_continuity.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">def</span> <span class="nf">continuity_spj_func</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">):</span>
+    <span class="n">_expected_sum</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+    <span class="n">output_items</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">item</span><span class="p">]</span>
+    <span class="n">_actual_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">output_items</span><span class="p">)</span>
+    <span class="n">_actual_cnt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">output_items</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">_expected_sum</span> <span class="o">==</span> <span class="n">_actual_sum</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">_actual_cnt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">_expected_sum</span><span class="p">),</span> <span class="s1">&#39;Correct result.&#39;</span><span class="p">,</span> <span class="s1">&#39;Oh yeah, well done ^_^.&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;Result </span><span class="si">{</span><span class="n">_expected_sum</span><span class="si">}</span><span class="s1"> expected but </span><span class="si">{</span><span class="n">_actual_sum</span><span class="si">}</span><span class="s1"> found.&#39;</span>
+
+
+<span class="n">__spj__</span> <span class="o">=</span> <span class="n">continuity_spj_func</span>
+</pre></div></td></tr></table></div>
+</div>
+<p>Here is an example of correct result, but it is obviously not the best one.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -i <span class="s1">&#39;15&#39;</span> -o <span class="s1">&#39;1 2 3 4 5&#39;</span> -s spj_continuity -p
+</pre></div></td></tr></table></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span>{
+    &quot;correctness&quot;: true,
+    &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;,
+    &quot;message&quot;: &quot;Correct result.&quot;,
+    &quot;score&quot;: 0.7333333333333334
+}
+</pre></div></td></tr></table></div>
+</div>
+<p>Another example of correct result, which is better than the abovementioned one.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -i <span class="s1">&#39;15&#39;</span> -o <span class="s1">&#39;7 8&#39;</span> -s spj_continuity -p
+</pre></div></td></tr></table></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span>{
+    &quot;correctness&quot;: true,
+    &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;,
+    &quot;message&quot;: &quot;Correct result.&quot;,
+    &quot;score&quot;: 0.9333333333333333
+}
+</pre></div></td></tr></table></div>
+</div>
+<p>And then a wrong example as shown in following part.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -i <span class="s1">&#39;15&#39;</span> -o <span class="s1">&#39;7 8 8&#39;</span> -s spj_continuity -p
+</pre></div></td></tr></table></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span>{
+    &quot;correctness&quot;: false,
+    &quot;detail&quot;: &quot;Result 15 expected but 23 found.&quot;,
+    &quot;message&quot;: &quot;Result 15 expected but 23 found.&quot;,
+    &quot;score&quot;: 0.0
+}
+</pre></div></td></tr></table></div>
+</div>
+</section>
+<section id="addtional-arguments">
+<h2>Addtional Arguments<a class="headerlink" href="#addtional-arguments" title="Permalink to this headline">¶</a></h2>
+<p>In some complex cases, additional arguments need to be passed into the special judge function, such as the mode of special judge, or something like the extra required data file’s path. Like the following code which is named <code class="docutils literal notranslate"><span class="pre">spj_additional.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">def</span> <span class="nf">additional_spj_func</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">sep</span><span class="p">)</span> <span class="k">if</span> <span class="n">item</span><span class="p">]</span>
+    <span class="n">_correct_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">_result</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;No output found.&#39;</span>
+
+    <span class="k">if</span> <span class="n">_result</span> <span class="o">==</span> <span class="n">_correct_sum</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;Correct result.&#39;</span><span class="p">,</span> <span class="s1">&#39;Oh yeah, well done ^_^.&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;Result </span><span class="si">{correct}</span><span class="s1"> expected but </span><span class="si">{actual}</span><span class="s1"> found.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">correct</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">_correct_sum</span><span class="p">),</span> <span class="n">actual</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">_result</span><span class="p">)</span>
+        <span class="p">)</span>
+
+
+<span class="n">__spj__</span> <span class="o">=</span> <span class="n">additional_spj_func</span>
+</pre></div></td></tr></table></div>
+</div>
+<p>Here is an common example</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -i <span class="s1">&#39;1 2 3 4 5&#39;</span> -o <span class="m">15</span> -s spj_additional -V <span class="s1">&#39;sep= &#39;</span>
+</pre></div></td></tr></table></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>{&quot;correctness&quot;: true, &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;, &quot;message&quot;: &quot;Correct result.&quot;}
+</pre></div></td></tr></table></div>
+</div>
+<p>And, if you want the input to be separated by <code class="docutils literal notranslate"><span class="pre">,</span></code>, just use the <code class="docutils literal notranslate"><span class="pre">-V</span></code> option, like the command line below</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -i <span class="s1">&#39;1,2,3,4,5&#39;</span> -o <span class="m">15</span> -s spj_additional -V <span class="s1">&#39;sep=,&#39;</span>
+</pre></div></td></tr></table></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>{&quot;correctness&quot;: true, &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;, &quot;message&quot;: &quot;Correct result.&quot;}
+</pre></div></td></tr></table></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>File import features (like <code class="docutils literal notranslate"><span class="pre">-I</span></code> and <code class="docutils literal notranslate"><span class="pre">-O</span></code> options`) are not supported in addtional arguments.</p>
+<p>If you need to load the content of a data file, just pass the path of the data file by additional arguments, and then manually load the file in your special judge function.</p>
+</div>
+</section>
+<section id="create-my-runnable-special-judge-cli">
+<h2>Create My Runnable Special Judge CLI<a class="headerlink" href="#create-my-runnable-special-judge-cli" title="Permalink to this headline">¶</a></h2>
+<p>You can create your own special judge CLI with the <code class="docutils literal notranslate"><span class="pre">pyspj_entry</span></code> function. Like the following code named <code class="docutils literal notranslate"><span class="pre">spj_runnable.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><span class="kn">from</span> <span class="nn">pyspj.entry</span> <span class="kn">import</span> <span class="n">pyspj_entry</span>
+
+
+<span class="k">def</span> <span class="nf">spj_func</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">):</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">item</span><span class="p">]</span>
+    <span class="n">_correct_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">_result</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;No output found.&#39;</span>
+
+    <span class="k">if</span> <span class="n">_result</span> <span class="o">==</span> <span class="n">_correct_sum</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;Correct result.&#39;</span><span class="p">,</span> <span class="s1">&#39;Oh yeah, well done ^_^.&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;Result </span><span class="si">{correct}</span><span class="s1"> expected but </span><span class="si">{actual}</span><span class="s1"> found.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">correct</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">_correct_sum</span><span class="p">),</span> <span class="n">actual</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">_result</span><span class="p">)</span>
+        <span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">pyspj_entry</span><span class="p">(</span>
+        <span class="s1">&#39;demo_pyspj&#39;</span><span class="p">,</span> <span class="n">spj_func</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s1">&#39;2.3.3&#39;</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">author</span><span class="o">=</span><span class="s1">&#39;spj-dev&#39;</span><span class="p">,</span>  <span class="c1"># optional</span>
+        <span class="n">email</span><span class="o">=</span><span class="s1">&#39;spj-demo@my-email.com&#39;</span><span class="p">,</span>  <span class="c1"># optional</span>
+    <span class="p">)()</span>
+</pre></div></td></tr></table></div>
+</div>
+<p>You can see its version information.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>python spj_runnable.py -v
+</pre></div></td></tr></table></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span>Special judge - demo_pyspj, version 2.3.3.
+Developed by spj-dev, spj-demo@my-email.com.
+Powered by pyspj, version 0.1.0.
+Based on Python 3.7.13.
+</pre></div></td></tr></table></div>
+</div>
+<p>And see its help information, which is almost the same as the native <code class="docutils literal notranslate"><span class="pre">pyspj</span></code> CLI.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>python spj_runnable.py -h
+</pre></div></td></tr></table></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span>Usage: spj_runnable.py [OPTIONS]
+
+  Demo_pyspj - test a pair of given input and output.
+
+Options:
+  -v, --version           Show special judge&#39;s version information.
+  -i, --input TEXT        Input content of special judge.
+  -o, --output TEXT       Output content of special judge
+  -I, --input_file FILE   Input file of special judge (if -i is given, this
+                          will be ignored).
+  -O, --output_file FILE  Output file of special judge (if -o is given, this
+                          will be ignored).
+  -V, --value TEXT        Attached values for special judge (do not named as
+                          &quot;stdin&quot; or &quot;stdout&quot;).
+  -p, --pretty            Use pretty mode to print json result.
+  -h, --help              Show this message and exit.
+</pre></div></td></tr></table></div>
+</div>
+<p>The cli script <code class="docutils literal notranslate"><span class="pre">spj_runnable.py</span></code> created by yourself can be used like the <code class="docutils literal notranslate"><span class="pre">pyspj</span></code> CLI.</p>
+<p>Besides, this runnable special judge script can be built to a standalone special judge executable file if needed.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyinstaller -D -F -n demo_spj -c spj_runnable.py
+</pre></div></td></tr></table></div>
+</div>
+</section>
+</section>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../api_doc/config/index.html" class="btn btn-neutral float-right" title="pyspj.config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../quick_start/index.html" class="btn btn-neutral float-left" title="Quick Start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, HansBug
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: dev/refactor
+    <span class="fa fa-caret-down"></span>
+  </span>
+        <div class="rst-other-versions">
+                <dl>
+                    <dt>Tags</dt>
+                        <dd><a href="../../../../v0.1.0/tutorials/advanced_usage/index.html">v0.1.0</a></dd>
+                </dl>
+                <dl>
+                    <dt>Branches</dt>
+                        <dd><a href="index.html">dev/refactor</a></dd>
+                        <dd><a href="../../../../main/tutorials/advanced_usage/index.html">main</a></dd>
+                </dl>
+        </div>
+    </div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

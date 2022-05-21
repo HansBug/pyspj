@@ -5,7 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Quick Start &mdash; pyspj 0.1.0 documentation</title>
@@ -85,7 +86,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <p><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a><ul>
@@ -96,7 +97,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../advanced_usage/index.html">Advanced Usage</a></li>
 </ul>
-<p class="caption"><span class="caption-text">API Documentation</span></p>
+<p><span class="caption-text">API Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../api_doc/config/index.html">pyspj.config</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api_doc/entry/index.html">pyspj.entry</a></li>
@@ -168,12 +169,12 @@
             
     
     
-  <div class="section" id="quick-start">
+  <section id="quick-start">
 <h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="painless-test">
+<section id="painless-test">
 <h2>Painless Test<a class="headerlink" href="#painless-test" title="Permalink to this headline">¶</a></h2>
 <p>Firstly, we need to create a new special judge function, like the following code in <code class="docutils literal notranslate"><span class="pre">spj_demo.py</span></code>.</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<div class="highlight-python notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -191,7 +192,7 @@
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">spj_func</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">):</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><span class="k">def</span> <span class="nf">spj_func</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span> <span class="n">stdout</span><span class="p">):</span>
     <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">item</span><span class="p">]</span>
     <span class="n">_correct_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
 
@@ -210,64 +211,64 @@
 
 
 <span class="n">__spj__</span> <span class="o">=</span> <span class="n">spj_func</span>
-</pre></div>
-</td></tr></table></div>
-<p>Then test a simple pair of input and output by the following command line.</p>
-<div class="highlight-shell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>pyspj -i <span class="s1">&#39;1 2 3 4 5&#39;</span> -o <span class="m">15</span> -s spj_demo
-</pre></div>
-</td></tr></table></div>
-<p>The output should be</p>
-<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>{&quot;correctness&quot;: true, &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;, &quot;message&quot;: &quot;Correct result.&quot;}
-</pre></div>
-</td></tr></table></div>
-<p>But when wrong output is given like below</p>
-<div class="highlight-shell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>pyspj -i <span class="s1">&#39;1 2 3 4 5&#39;</span> -o <span class="m">16</span> -s spj_demo
-</pre></div>
-</td></tr></table></div>
-<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>{&quot;correctness&quot;: false, &quot;detail&quot;: &quot;Result 15 expected but 16 found.&quot;, &quot;message&quot;: &quot;Result 15 expected but 16 found.&quot;}
-</pre></div>
-</td></tr></table></div>
+</pre></div></td></tr></table></div>
 </div>
-<div class="section" id="use-file-input-ouput-instead">
+<p>Then test a simple pair of input and output by the following command line.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -i <span class="s1">&#39;1 2 3 4 5&#39;</span> -o <span class="m">15</span> -s spj_demo
+</pre></div></td></tr></table></div>
+</div>
+<p>The output should be</p>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>{&quot;correctness&quot;: true, &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;, &quot;message&quot;: &quot;Correct result.&quot;}
+</pre></div></td></tr></table></div>
+</div>
+<p>But when wrong output is given like below</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -i <span class="s1">&#39;1 2 3 4 5&#39;</span> -o <span class="m">16</span> -s spj_demo
+</pre></div></td></tr></table></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>{&quot;correctness&quot;: false, &quot;detail&quot;: &quot;Result 15 expected but 16 found.&quot;, &quot;message&quot;: &quot;Result 15 expected but 16 found.&quot;}
+</pre></div></td></tr></table></div>
+</div>
+</section>
+<section id="use-file-input-ouput-instead">
 <h2>Use File Input/Ouput Instead<a class="headerlink" href="#use-file-input-ouput-instead" title="Permalink to this headline">¶</a></h2>
 <p>When the scale of input and output are too large, we can use <code class="docutils literal notranslate"><span class="pre">-I</span></code> and <code class="docutils literal notranslate"><span class="pre">-O</span></code> option to input from file or output to file.</p>
 <p>Here is an example if input file <code class="docutils literal notranslate"><span class="pre">input_demo.txt</span></code></p>
-<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>1 2 3 4 5 6 7 8 9 10
-</pre></div>
-</td></tr></table></div>
-<p>And an output file <code class="docutils literal notranslate"><span class="pre">output_demo.txt</span></code></p>
-<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>55
-</pre></div>
-</td></tr></table></div>
-<p>When the following command is executed</p>
-<div class="highlight-shell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>pyspj -I input_demo.txt -O output_demo.txt -s spj_demo
-</pre></div>
-</td></tr></table></div>
-<p>The output result should be</p>
-<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>{&quot;correctness&quot;: true, &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;, &quot;message&quot;: &quot;Correct result.&quot;}
-</pre></div>
-</td></tr></table></div>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>1 2 3 4 5 6 7 8 9 10
+</pre></div></td></tr></table></div>
 </div>
-<div class="section" id="pretty-print-the-result">
+<p>And an output file <code class="docutils literal notranslate"><span class="pre">output_demo.txt</span></code></p>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>55
+</pre></div></td></tr></table></div>
+</div>
+<p>When the following command is executed</p>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -I input_demo.txt -O output_demo.txt -s spj_demo
+</pre></div></td></tr></table></div>
+</div>
+<p>The output result should be</p>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>{&quot;correctness&quot;: true, &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;, &quot;message&quot;: &quot;Correct result.&quot;}
+</pre></div></td></tr></table></div>
+</div>
+</section>
+<section id="pretty-print-the-result">
 <h2>Pretty Print the Result<a class="headerlink" href="#pretty-print-the-result" title="Permalink to this headline">¶</a></h2>
 <p>The output result is a json-formatted string, and it is placed in one line in default. So if you want it to be prettily printed, the following command can be used.</p>
-<div class="highlight-shell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>pyspj -i <span class="s1">&#39;1 2 3 4 5&#39;</span> -o <span class="m">15</span> -s spj_demo -p
-</pre></div>
-</td></tr></table></div>
+<div class="highlight-shell notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span>pyspj -i <span class="s1">&#39;1 2 3 4 5&#39;</span> -o <span class="m">15</span> -s spj_demo -p
+</pre></div></td></tr></table></div>
+</div>
 <p>Its output should be</p>
-<div class="highlight-text notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<div class="highlight-text notranslate"><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span>{
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span>{
     &quot;correctness&quot;: true,
     &quot;detail&quot;: &quot;Oh yeah, well done ^_^.&quot;,
     &quot;message&quot;: &quot;Correct result.&quot;
 }
-</pre></div>
-</td></tr></table></div>
+</pre></div></td></tr></table></div>
 </div>
-</div>
+</section>
+</section>
 
 
 
@@ -318,6 +319,7 @@
                 </dl>
                 <dl>
                     <dt>Branches</dt>
+                        <dd><a href="../../../dev/refactor/tutorials/quick_start/index.html">dev/refactor</a></dd>
                         <dd><a href="index.html">main</a></dd>
                 </dl>
         </div>

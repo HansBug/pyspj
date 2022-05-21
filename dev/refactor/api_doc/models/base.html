@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyspj.models.base &mdash; pyspj 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pyspj.models.continuity" href="continuity.html" />
+    <link rel="prev" title="pyspj.models" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> pyspj
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/quick_start/index.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/advanced_usage/index.html">Advanced Usage</a></li>
+</ul>
+<p><span class="caption-text">API Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../config/index.html">pyspj.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../entry/index.html">pyspj.entry</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyspj.models</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyspj.models.base</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spjresult">SPJResult</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="continuity.html">pyspj.models.continuity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general.html">pyspj.models.general</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simple.html">pyspj.models.simple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">pyspj.utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyspj</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyspj.models</a> &raquo;</li>
+        
+      <li>pyspj.models.base</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/api_doc/models/base.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+    
+    
+  <section id="module-pyspj.models.base">
+<span id="pyspj-models-base"></span><h1>pyspj.models.base<a class="headerlink" href="#module-pyspj.models.base" title="Permalink to this headline">¶</a></h1>
+<section id="spjresult">
+<h2>SPJResult<a class="headerlink" href="#spjresult" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pyspj.models.base.SPJResult">
+<em class="property">class </em><code class="sig-prename descclassname">pyspj.models.base.</code><code class="sig-name descname">SPJResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">correctness</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">detail</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyspj/models/base.html#SPJResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.models.base.SPJResult" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Overview:</dt><dd><p>Result of special judge.
+This is an abstract class.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyspj.models.base.SPJResult.__eq__">
+<code class="sig-name descname">__eq__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyspj/models/base.html#SPJResult.__eq__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.models.base.SPJResult.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyspj.models.base.SPJResult.__hash__">
+<code class="sig-name descname">__hash__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyspj/models/base.html#SPJResult.__hash__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.models.base.SPJResult.__hash__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return hash(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyspj.models.base.SPJResult.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">correctness</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">detail</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyspj/models/base.html#SPJResult.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.models.base.SPJResult.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for <a class="reference internal" href="#pyspj.models.base.SPJResult" title="pyspj.models.base.SPJResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyspj.models.base.SPJResult</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>correctness</strong> – correctness of result</p></li>
+<li><p><strong>message</strong> – message of result</p></li>
+<li><p><strong>detail</strong> – detail of result</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyspj.models.base.SPJResult.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyspj/models/base.html#SPJResult.__repr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.models.base.SPJResult.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get representation format of current result object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Representation string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyspj.models.base.SPJResult.correctness">
+<em class="property">property </em><code class="sig-name descname">correctness</code><a class="headerlink" href="#pyspj.models.base.SPJResult.correctness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Correctness of this result.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyspj.models.base.SPJResult.detail">
+<em class="property">property </em><code class="sig-name descname">detail</code><a class="headerlink" href="#pyspj.models.base.SPJResult.detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detail information of this result.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyspj.models.base.SPJResult.message">
+<em class="property">property </em><code class="sig-name descname">message</code><a class="headerlink" href="#pyspj.models.base.SPJResult.message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message of this result.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyspj.models.base.SPJResult.to_json">
+<code class="sig-name descname">to_json</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Mapping<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><a class="reference internal" href="../../_modules/pyspj/models/base.html#SPJResult.to_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyspj.models.base.SPJResult.to_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get JSON-formatted result data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A json for the current result data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="continuity.html" class="btn btn-neutral float-right" title="pyspj.models.continuity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="pyspj.models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2022, HansBug
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+    <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: dev/refactor
+    <span class="fa fa-caret-down"></span>
+  </span>
+        <div class="rst-other-versions">
+                <dl>
+                    <dt>Tags</dt>
+                        <dd><a href="../../../../v0.1.0/api_doc/models/base.html">v0.1.0</a></dd>
+                </dl>
+                <dl>
+                    <dt>Branches</dt>
+                        <dd><a href="base.html">dev/refactor</a></dd>
+                        <dd><a href="../../../../main/api_doc/models/base.html">main</a></dd>
+                </dl>
+        </div>
+    </div>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
