@@ -1,8 +1,8 @@
 import io
 import pathlib
-import tempfile
 
 import pytest
+from hbutils.testing import isolated_directory
 
 from pyspj.entry.script import execute_spj, execute_spj_from_string, execute_spj_from_file
 from pyspj.models import SimpleSPJResult
@@ -46,29 +46,28 @@ class TestEntryScriptExecute:
         assert result.message.startswith('Exception occurred while special judge - '
                                          'ValueError("invalid literal for int() with base 10:')
 
-    def test_execute_spj_file(self):
-        with tempfile.NamedTemporaryFile() as stdin_file, \
-                tempfile.NamedTemporaryFile() as stdout_file:
-            pathlib.Path(stdin_file.name).write_text('1 2 3  4  5')
-            pathlib.Path(stdout_file.name).write_text('  15 ')
+    def test_execute_spj_file_correct(self):
+        with isolated_directory():
+            pathlib.Path('input.txt').write_text('1 2 3  4  5')
+            pathlib.Path('output.txt').write_text('  15 ')
 
-            result = execute_spj_from_file(_spj_func, stdin_file.name, stdout_file.name)
+            result = execute_spj_from_file(_spj_func, 'input.txt', 'output.txt')
             assert result == SimpleSPJResult(True, 'Correct result.')
 
-        with tempfile.NamedTemporaryFile() as stdin_file, \
-                tempfile.NamedTemporaryFile() as stdout_file:
-            pathlib.Path(stdin_file.name).write_text('1 2 3  4  5')
-            pathlib.Path(stdout_file.name).write_text('  16 ')
+    def test_execute_spj_file_wrong_answer(self):
+        with isolated_directory():
+            pathlib.Path('input.txt').write_text('1 2 3  4  5')
+            pathlib.Path('output.txt').write_text('  16 ')
 
-            result = execute_spj_from_file(_spj_func, stdin_file.name, stdout_file.name)
+            result = execute_spj_from_file(_spj_func, 'input.txt', 'output.txt')
             assert result == SimpleSPJResult(False, 'Result 15 expected but 16 found.')
 
-        with tempfile.NamedTemporaryFile() as stdin_file, \
-                tempfile.NamedTemporaryFile() as stdout_file:
-            pathlib.Path(stdin_file.name).write_text('1 2 3  4  5')
-            pathlib.Path(stdout_file.name).write_text('')
+    def test_execute_spj_file_error(self):
+        with isolated_directory():
+            pathlib.Path('input.txt').write_text('1 2 3  4  5')
+            pathlib.Path('output.txt').write_text('')
 
-            result = execute_spj_from_file(_spj_func, stdin_file.name, stdout_file.name)
+            result = execute_spj_from_file(_spj_func, 'input.txt', 'output.txt')
             assert not result.correctness
             assert result.message.startswith('Exception occurred while special judge - '
                                              'ValueError("invalid literal for int() with base 10:')
